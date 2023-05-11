@@ -1,8 +1,7 @@
 // AmplifyConnectedComponents.jsx
 "use client";
 import * as React from "react";
-import { Authenticator, useAuthenticator, withAuthenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
+import { Authenticator as AmplifyAuthenticator, useAuthenticator, withAuthenticator } from "@aws-amplify/ui-react";
 
 function GatedAuth({ children }: { children: React.ReactNode }) {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
@@ -11,15 +10,15 @@ function GatedAuth({ children }: { children: React.ReactNode }) {
     return <>{children}</>; // can be Server Component
   }
 
-  return <Authenticator />;
+  return <AmplifyAuthenticator />;
 }
 
-function GatedAuthProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <Authenticator.Provider>
-      <GatedAuth>{children}</GatedAuth>
-    </Authenticator.Provider>
-  );
+function AuthenticatorProvider({children}: {children: React.ReactNode}) {
+    return(
+        <AmplifyAuthenticator.Provider>
+            {children}
+        </AmplifyAuthenticator.Provider>
+    )
 }
 
-export { Authenticator, withAuthenticator, GatedAuthProvider };
+export { AuthenticatorProvider, GatedAuth };

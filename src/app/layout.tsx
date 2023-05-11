@@ -1,7 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import './configure';
-
+import NavBar from './components/NavBar';
+import {AuthenticatorProvider} from './amplifyUIComponents'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthenticatorProvider>
+          <NavBar />
+          {children}
+        </AuthenticatorProvider>
+      </body>
     </html>
   )
 }

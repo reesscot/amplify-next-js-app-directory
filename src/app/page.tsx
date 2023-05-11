@@ -1,11 +1,12 @@
 import "./configure";
-import { GatedAuthProvider } from "./amplifyUIComponents";
+import { GatedAuth } from "./amplifyUIComponents";
 import AppSC from "./App";
+import "@aws-amplify/ui-react/styles.css";
 
 export default function Home() {
   return (
-    <GatedAuthProvider>
+    <GatedAuth>
       <AppSC />
-    </GatedAuthProvider>
+    </GatedAuth>
   );
 }
